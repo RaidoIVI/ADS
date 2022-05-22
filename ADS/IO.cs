@@ -22,7 +22,7 @@ namespace ADS
 
         internal static void SendLine(string Value)
         {
-            Console.Write(Value);
+            Console.WriteLine(Value);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace ADS
 
             Launcher.Run();
 
-            Console.ReadKey();
+            //Console.ReadKey();
 
         }
     }
