@@ -28,7 +28,7 @@ namespace ADS
                         var description = type.GetMethod("GetDescription");
                         var tmp = new object[] { };
 
-                        IO.Send($"{i + 1}. {lession.Invoke(homeWorkTmp, tmp)} {name.Invoke(homeWorkTmp, tmp)} {description.Invoke(homeWorkTmp, tmp)}");
+                        IO.SendLine($"{i + 1}. {lession.Invoke(homeWorkTmp, tmp)} {name.Invoke(homeWorkTmp, tmp)} {description.Invoke(homeWorkTmp, tmp)}");
 
                     }
 
