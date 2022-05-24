@@ -17,7 +17,7 @@ namespace ADS
 
         internal static void Send(string Value)
         {
-            Console.WriteLine(Value);
+            Console.Write(Value);
         }
 
         internal static void SendLine(string Value)
