@@ -18,7 +18,7 @@ namespace ADS
             TimeReset();
             this.quantity = quantity;
             stopwatch = new();
-            stopwatch.Start();
+            stopwatch.Restart();
             StructInit(quantity);
             stopwatch.Stop();
             structTime = stopwatch.Elapsed;
@@ -65,7 +65,7 @@ namespace ADS
         internal void Test()
         {
             TimeReset();
-            stopwatch.Start();
+            stopwatch.Restart();
             LenghtStruct();
             stopwatch.Stop();
             structTime = stopwatch.Elapsed;
@@ -78,7 +78,7 @@ namespace ADS
         internal void TestWOSqrt()
         {
             TimeReset();
-            stopwatch.Start();
+            stopwatch.Restart();
             LenghtStructWOSqrt();
             stopwatch.Stop();
             structTime = stopwatch.Elapsed;
@@ -96,7 +96,7 @@ namespace ADS
                 {
                     var pointFirst = rangeClass[i];
                     var pointSecond = rangeClass[j];
-                    var tmp = Math.Sqrt((pointFirst.X - pointSecond.X) * (pointFirst.X - pointSecond.X) + (pointFirst.Y - pointSecond.Y) * (pointFirst.Y - pointSecond.Y));
+                    var tmp = Math.Sqrt(Math.Pow((pointFirst.X - pointSecond.X), 2) + Math.Pow((pointFirst.Y - pointSecond.Y), 2));
                 }
             }
         }
@@ -109,7 +109,7 @@ namespace ADS
                 {
                     var pointFirst = rangeClass[i];
                     var pointSecond = rangeClass[j];
-                    var tmp = (pointFirst.X - pointSecond.X) * (pointFirst.X - pointSecond.X) + (pointFirst.Y - pointSecond.Y) * (pointFirst.Y - pointSecond.Y);
+                    var tmp = Math.Pow((pointFirst.X - pointSecond.X), 2) + Math.Pow((pointFirst.Y - pointSecond.Y), 2);
                 }
             }
         }
@@ -122,7 +122,7 @@ namespace ADS
                 {
                     var pointFirst = rangeStruct[i];
                     var pointSecond = rangeStruct[j];
-                    var tmp = Math.Sqrt((pointFirst.X - pointSecond.X) * (pointFirst.X - pointSecond.X) + (pointFirst.Y - pointSecond.Y) * (pointFirst.Y - pointSecond.Y));
+                    var tmp = Math.Sqrt(Math.Pow((pointFirst.X - pointSecond.X), 2) + Math.Pow((pointFirst.Y - pointSecond.Y), 2));
                 }
             }
         }
@@ -135,7 +135,7 @@ namespace ADS
                 {
                     var pointFirst = rangeStruct[i];
                     var pointSecond = rangeStruct[j];
-                    var tmp = ((pointFirst.X - pointSecond.X) * (pointFirst.X - pointSecond.X) + (pointFirst.Y - pointSecond.Y) * (pointFirst.Y - pointSecond.Y));
+                    var tmp = Math.Pow((pointFirst.X - pointSecond.X), 2) + Math.Pow((pointFirst.Y - pointSecond.Y), 2);
                 }
             }
         }
