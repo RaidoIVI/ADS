@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections;
 
 namespace ADS
 {
     internal class NodeList : ILinkedList, IEnumerable
     {
-        private Node firstNode;
-        private Node lastNode;
+        private readonly Node firstNode;
+        private readonly Node lastNode;
 
         public NodeList()
         {
@@ -26,7 +21,7 @@ namespace ADS
         {
             if (firstNode.Value == 0)
             {
-                Node newNode = new Node(value);
+                Node newNode = new(value);
                 firstNode.NextNode = newNode;
                 lastNode.PrevNode = newNode;
                 newNode.PrevNode = firstNode;
@@ -36,7 +31,6 @@ namespace ADS
             }
             else
             {
-                Node newNode = new Node(value);
                 AddNodeAfter(lastNode.PrevNode, value);
             }
         }
@@ -46,9 +40,11 @@ namespace ADS
             if (node != lastNode && node != firstNode)
             {
                 Node nextNode = node.NextNode;
-                Node newNode = new Node(value);
-                newNode.PrevNode = node;
-                newNode.NextNode = node.NextNode;
+                Node newNode = new(value)
+                {
+                    PrevNode = node,
+                    NextNode = node.NextNode
+                };
                 node.NextNode = newNode;
                 nextNode.PrevNode = newNode;
                 firstNode.Value++;
@@ -110,10 +106,11 @@ namespace ADS
                 RemoveNode(node);
             }
         }
+
         private Node? GetNode(int index)
         {
             Node current = firstNode.NextNode;
-            for (int i=0; i<index; i++)
+            for (int i = 0; i < index; i++)
             {
                 current = current.NextNode;
             }
@@ -145,12 +142,13 @@ namespace ADS
         }
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return (IEnumerator)GetEnumerator();
+            return GetEnumerator();
         }
 
         #endregion
 
         #region HW2
+
         public void SortBubble()
         {
             for (int i = 0; i < firstNode.Value; i++)
@@ -161,15 +159,13 @@ namespace ADS
                     current = current.NextNode;
                     if (current.Value > current.NextNode.Value)
                     {
-                        int tmp = current.NextNode.Value;
-                        current.NextNode.Value = current.Value;
-                        current.Value = tmp;
+                        (current.Value, current.NextNode.Value) = (current.NextNode.Value, current.Value);
                     }
                 }
             }
         }
 
-        public Node? SearchBinary (int value)
+        public Node? SearchBinary(int value)
         {
             int min = 0;
             int max = firstNode.Value;

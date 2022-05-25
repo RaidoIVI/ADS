@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ADS
+﻿namespace ADS
 {
     internal static class IO
     {
@@ -12,17 +6,18 @@ namespace ADS
         {
             Console.Write($"{Description} ");
             var tmp = Console.ReadLine();
+            if (tmp == null) tmp = String.Empty;
             return tmp;
         }
 
-        internal static void Send(string Value)
+        internal static void Send(string value = "")
         {
-            Console.Write(Value);
+            Console.Write(value);
         }
 
-        internal static void SendLine(string Value)
+        internal static void SendLine(string value = "")
         {
-            Console.WriteLine(Value);
+            Console.WriteLine(value);
         }
     }
 }

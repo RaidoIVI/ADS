@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections;
 
 namespace ADS
 {
@@ -13,7 +8,7 @@ namespace ADS
         private Node lastNode;
         private Node currentNode;
 
-        public NodeListEnum (Node firstNode, Node lastNode)
+        public NodeListEnum(Node firstNode, Node lastNode)
         {
             currentNode = firstNode;
             this.firstNode = firstNode;
@@ -24,6 +19,7 @@ namespace ADS
         {
             currentNode = firstNode;
         }
+
         public bool MoveNext()
         {
             if (currentNode.NextNode == lastNode)
@@ -36,6 +32,7 @@ namespace ADS
                 return true;
             }
         }
+
         public object Current => currentNode;
     }
 }

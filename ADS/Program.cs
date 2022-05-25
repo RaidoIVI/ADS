@@ -1,17 +1,10 @@
-﻿using System;
-using System.Reflection;
-
-namespace ADS
+﻿namespace ADS
 {
     internal class Program
     {
         static void Main()
         {
-
             Launcher.Run();
-
-            //Console.ReadKey();
-
         }
     }
 }

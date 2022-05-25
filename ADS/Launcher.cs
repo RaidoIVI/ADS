@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Reflection;
 
 namespace ADS
 {
@@ -11,7 +6,7 @@ namespace ADS
     {
         internal static void Run()
         {
-            List<Type> HomeWorkList = new List<Type>();
+            List<Type> HomeWorkList = new();
             HomeWorkList.AddRange(Assembly.GetExecutingAssembly().GetTypes().Where(t => t.BaseType == typeof(HomeWork)));
             if (HomeWorkList.Count > 0)
             {
@@ -22,28 +17,27 @@ namespace ADS
                     {
                         var type = HomeWorkList[i];
                         var constructorTmp = type.GetConstructor(Type.EmptyTypes);
-                        var homeWorkTmp = constructorTmp.Invoke(new object[] { });
+                        var homeWorkTmp = constructorTmp.Invoke(Array.Empty<object>());
                         var lession = type.GetMethod("GetLession");
                         var name = type.GetMethod("GetName");
                         var description = type.GetMethod("GetDescription");
-                        var tmp = new object[] { };
+                        var tmp = Array.Empty<object>();
 
                         IO.SendLine($"{i + 1}. {lession.Invoke(homeWorkTmp, tmp)} {name.Invoke(homeWorkTmp, tmp)} {description.Invoke(homeWorkTmp, tmp)}");
 
                     }
 
-                    int UserChoice;
                     UserEnter = IO.Get("Введите номер строки для проверки, для выхода наберите -1: ");
 
-                    if (int.TryParse(UserEnter, out UserChoice))
+                    if (int.TryParse(UserEnter, out int UserChoice))
                     {
                         if (UserChoice - 1 < HomeWorkList.Count && UserChoice > 0)
                         {
                             var type = HomeWorkList[UserChoice - 1];
                             var constructor = type.GetConstructor(Type.EmptyTypes);
-                            var homeWork = constructor.Invoke(new object[] { });
+                            var homeWork = constructor.Invoke(Array.Empty<object>());
                             var run = type.GetMethod("Run");
-                            var homeWorkRun = run.Invoke(homeWork, new object[] { });
+                            var homeWorkRun = run.Invoke(homeWork, Array.Empty<object>());
                         }
                     }
                 }
