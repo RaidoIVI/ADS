@@ -169,5 +169,10 @@
             List<BTreeNode> child = new List<BTreeNode>() { childLeft, childRight };
             return child.ToArray();
         }
+
+        internal void Draw()
+        {
+            IO.Send(value);
+        }
     }
 }

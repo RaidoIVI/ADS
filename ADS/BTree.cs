@@ -96,5 +96,47 @@ namespace ADS
                 if (child[i] != null) GetTree(tree, child[i], indent, i == child.Length - 1);
             }
         }
+
+        public BTreeNode[] BFS()
+        {
+            List<BTreeNode> bfs = new();
+            Queue<BTreeNode> queue = new();
+            queue.Enqueue(root);
+
+            while (queue.Count > 0)
+            {
+                var tmpNode = queue.Dequeue();
+                if (tmpNode != null)
+                {
+                    bfs.Add(tmpNode);
+                    foreach (var b in tmpNode.GetChild())
+                    {
+                        queue.Enqueue(b);
+                    }
+                }
+            }
+            return bfs.ToArray();
+        }
+
+        public BTreeNode[] DFS()
+        {
+            List<BTreeNode> dfs = new();
+            Stack<BTreeNode> stack = new();
+            stack.Push(root);
+
+            while (stack.Count > 0)
+            {
+                var tmpNode = stack.Pop();
+                if (tmpNode != null)
+                {
+                    dfs.Add(tmpNode);
+                    foreach (var b in tmpNode.GetChild())
+                    {
+                        stack.Push(b);
+                    }
+                }
+            }
+            return dfs.ToArray();
+        }
     }
 }
