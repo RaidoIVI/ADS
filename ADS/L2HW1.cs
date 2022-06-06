@@ -1,14 +1,16 @@
-﻿namespace ADS
+﻿using Launcher;
+
+namespace ADS
 {
-    internal class L2HW1 : HomeWork
+    internal class L2HW1 : IHomeWork
     {
-        private new const string _lession = "Урок 2";
-        private new const string _name = "Задание 1";
-        private new const string _description = "Реализация двухсвязного списка в соответствии с интерфейсом";
+        public string Name => "Задание 1";
 
-        public L2HW1() : base(_lession, _name, _description) { }
+        public string Lession => "Урок 2";
 
-        public override void Run()
+        public string Description => "Реализация двухсвязного списка в соответствии с интерфейсом";
+
+        public void Run()
         {
             NodeList testList = new();
             var rnd = new Random();

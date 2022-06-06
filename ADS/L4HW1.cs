@@ -1,15 +1,17 @@
-﻿namespace ADS
+﻿using Launcher;
+
+namespace ADS
 {
 
-    internal class L4HW1 : HomeWork
+    internal class L4HW1 : IHomeWork
     {
-        private new const string _lession = "Урок 4";
-        private new const string _name = "Задание 1";
-        private new const string _description = "Двоичное дерево";
+        public string Name => "Задание 1";
 
-        public L4HW1() : base(_lession, _name, _description) { }
+        public string Lession => "Урок 4";
 
-        public override void Run()
+        public string Description => "Двоичное дерево";
+
+        public void Run()
         {
             BTree tree = new BTree();
             var rnd = new Random();

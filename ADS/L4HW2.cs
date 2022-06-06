@@ -1,16 +1,17 @@
-﻿using System.Diagnostics;
+﻿using Launcher;
+using System.Diagnostics;
 
 namespace ADS
 {
-    internal class L4HW2 : HomeWork
+    internal class L4HW2 : IHomeWork
     {
-        private new const string _lession = "Урок 4";
-        private new const string _name = "Задание 2";
-        private new const string _description = "Сравнение скорости массива и HashSet";
+        public string Name => "Задание 2";
 
-        public L4HW2() : base(_lession, _name, _description) { }
+        public string Lession => "Урок 4";
 
-        public override void Run()
+        public string Description => "Сравнение скорости массива и HashSet";
+
+        public void Run()
         {
             var stopWatch = new Stopwatch();
             var rnd = new Random();
