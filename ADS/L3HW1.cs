@@ -1,14 +1,16 @@
-﻿namespace ADS
+﻿using Launcher;
+
+namespace ADS
 {
-    internal class L3HW1 : HomeWork
+    internal class L3HW1 : IHomeWork
     {
-        private new const string _lession = "Урок 3";
-        private new const string _name = "Задание 1";
-        private new const string _description = "Сравнение скорости работы класса и структуры";
+        public string Name => "Задание 1";
 
-        public L3HW1() : base(_lession, _name, _description) { }
+        public string Lession => "Урок 3";
 
-        public override void Run()
+        public string Description => "Сравнение скорости работы класса и структуры";
+
+        public void Run()
         {
             Test(5000);
             Test(10000);
