@@ -11,8 +11,8 @@ namespace ADS
 
         static ChessEnum()
         {
-            boards = new();
-            newPlased = new();
+            boards = new(10_000_000);
+            newPlased = new(10_000_000);
         }
 
         internal static Queue<Board> Result => boards;
@@ -32,45 +32,55 @@ namespace ADS
             foreach (IChessman item in chessmen)
             {
                 newPlased = new();
-                var boardsCount = boards.Count;
-                for (int i = 0; i < boardsCount; i++)
+
+                while (boards.Count != 0)
                 {
                     var tryBoard = boards.Dequeue();
                     StepNext(tryBoard, item);
                 }
+                //RemoveRelapse();
                 boards = newPlased;
-                boardsCount = boards.Count;
+
                 IO.SendLine($"Ставится {counter} фигура {boards.Count} вариантов, прошло {timer.Elapsed}");
                 counter++;
             }
 
-            RemoveRelapse();
+            //RemoveRelapse();
         }
 
         private static void StepNext(Board board, IChessman chessman)
         {
-            bool match = false;
-            for (int i = 0; i < sizeX; i++)
+            //bool match = false;
+            int minX = 0;
+            int minY = 0;
+            if (board.LastPlaced != null && board.LastPlaced.Code == chessman.Code)
+            {
+                minX = board.LastPlaced.X;
+                minY = board.LastPlaced.Y;
+            }
+            for (int i = minX; i < sizeX; i++)
             {
                 for (int j = 0; j < sizeY; j++)
                 {
-                    Board tmpBoard = (Board)board.Clone();
-                    IChessman tmpToPlace = (IChessman)chessman.Clone();
-                    tmpToPlace.SetCoodinats(i, j);
-                    if (tmpBoard.Add(tmpToPlace))
+                    //Board tmpBoard = (Board)board.Clone();
+                    //IChessman tmpToPlace = (IChessman)chessman.Clone();
+                    chessman.SetCoodinats(i, j);
+                    if (board.TryAdd(chessman))
                     {
-                        foreach (Board item in newPlased)
+                        //foreach (Board item in newPlased)
+                        //{
+                        //    if (tmpBoard.Equals(item)) match = true;
+                        //}
+                        //if (!match)
                         {
-                            if (tmpBoard.Equals(item)) match = true;
-                        }
-                        if (!match)
-                        {
+                            Board tmpBoard = (Board)board.Clone();
+                            IChessman tmpToPlace = (IChessman)chessman.Clone();
+                            tmpBoard.Add(tmpToPlace);
                             newPlased.Enqueue(tmpBoard);
                         }
                     }
                 }
             }
-
         }
 
         private static void RemoveRelapse()

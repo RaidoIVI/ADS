@@ -5,6 +5,7 @@
         private int sizeX;
         private int sizeY;
         internal List<IChessman> placed;
+        internal IChessman LastPlaced;
 
         internal Board(int x, int y)
         {
@@ -15,22 +16,22 @@
 
         public object Clone() => new Board(sizeX, sizeY, placed);
 
-        public IReadOnlyCollection<IChessman> GetChessmen => placed.AsReadOnly();
+        //public IReadOnlyCollection<IChessman> GetChessmen => placed.AsReadOnly();
 
-        public override bool Equals(Object board)
-        {
-            if (board == null || board.GetType() != typeof(Board))
-            {
-                return false;
-            }
-            int match = 0;
+        //public override bool Equals(Object board)
+        //{
+        //    if (board == null || board.GetType() != typeof(Board))
+        //    {
+        //        return false;
+        //    }
+        //    int match = 0;
 
-            foreach (IChessman chessman in ((Board)board).placed)
-            {
-                if (placed.Find(f => f.Code == chessman.Code && ((f.X == chessman.X && f.Y == chessman.Y))) != null) match++;
-            }
-            return match == placed.Count;
-        }
+        //    foreach (IChessman chessman in ((Board)board).placed)
+        //    {
+        //        if (placed.Find(f => f.Code == chessman.Code && ((f.X == chessman.X && f.Y == chessman.Y))) != null) match++;
+        //    }
+        //    return match == placed.Count;
+        //}
 
 
         private Board(int sizeX, int sizeY, List<IChessman> placed) : this(sizeX, sizeY)
@@ -38,13 +39,23 @@
             this.placed = new(placed);
         }
 
-        internal bool Add(IChessman chessman)
+        internal bool TryAdd(IChessman chessman)
         {
             foreach (IChessman item in placed)
             {
                 if (item.Beats(chessman.X, chessman.Y) || chessman.Beats(item.X, item.Y)) return false;
             }
-            placed.Add((IChessman)chessman.Clone());
+            return true;
+        }
+
+        internal bool Add(IChessman chessman)
+        {
+            //foreach (IChessman item in placed)
+            //{
+            //    if (item.Beats(chessman.X, chessman.Y) || chessman.Beats(item.X, item.Y)) return false;
+            //}
+            placed.Add(chessman);   // раньше тут ставился клон
+            LastPlaced = placed.Last();
             return true;
         }
 
