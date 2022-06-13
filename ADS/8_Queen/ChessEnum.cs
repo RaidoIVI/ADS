@@ -10,15 +10,14 @@ namespace ADS
         private static Queue<Board> newPlased;
 
         static ChessEnum()
-        {
-            boards = new(10_000_000);
-            newPlased = new(10_000_000);
-        }
+        { }
 
         internal static Queue<Board> Result => boards;
 
         internal static void Init(int x, int y)
         {
+            boards = new(10_000_000);
+            newPlased = new(10_000_000);
             sizeX = x;
             sizeY = y;
             boards.Enqueue(new Board(x, y));
@@ -41,6 +40,7 @@ namespace ADS
                 IO.SendLine($"Ставится {counter} фигура {boards.Count} вариантов, прошло {timer.Elapsed}");
                 counter++;
             }
+            timer.Stop();
         }
 
         private static void StepNext(Board board, IChessman chessman)
