@@ -1,6 +1,6 @@
 ﻿namespace ADS
 {
-    internal class Queen : IChessman
+    internal struct Queen : IChessman
     {
         private readonly static int code;
         private int x;
@@ -17,6 +17,12 @@
             y = 0;
         }
 
+        private Queen(int x, int y)
+        {
+            this.x = x;
+            this.y = y;
+        }
+
         public string Name => "Ферзь";
 
         public string Description => "Ферзь ходит по вертикали, по горизонтали и по обеим диагоналям";
@@ -31,7 +37,7 @@
 
         public bool Beats(int x, int y) => this.x == x || this.y == y || Math.Abs(this.x - x) == Math.Abs(this.y - y);
 
-        public object Clone() => MemberwiseClone();
+        public object Clone() => new Queen(x, y);
 
         public void SetCoodinats(int x, int y)
         {
