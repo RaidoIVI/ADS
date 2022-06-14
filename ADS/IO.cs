@@ -1,10 +1,10 @@
 ﻿namespace ADS
 {
-    internal static class IO
+    internal static class Io
     {
-        internal static string Get(string Description)
+        internal static string Get(string description)
         {
-            Console.Write($"{Description} ");
+            Console.Write($"{description} ");
             var tmp = Console.ReadLine();
             if (tmp == null) tmp = String.Empty;
             return tmp;

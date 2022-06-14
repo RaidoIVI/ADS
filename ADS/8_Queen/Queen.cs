@@ -2,13 +2,13 @@
 {
     internal struct Queen : IChessman
     {
-        private readonly static int code;
+        private static readonly int сode;
         private int x;
         private int y;
 
         static Queen()
         {
-            code = IChessman.ID;
+            сode = IChessman.Id;
         }
 
         public Queen()
@@ -29,7 +29,7 @@
 
         public char Sign => 'Q';
 
-        public int Code => code;
+        public int Code => сode;
 
         public int X => x;
 

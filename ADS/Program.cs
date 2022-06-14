@@ -4,28 +4,28 @@
     {
         static void Main()
         {
-            var HomeWorkList = Launcher.HW.GetList();
-            if (HomeWorkList.Length > 0)
+            var homeWorkList = Launcher.Hw.GetList();
+            if (homeWorkList.Length > 0)
             {
-                string UserEnter;
+                string userEnter;
                 do
                 {
-                    for (int i = 0; i < HomeWorkList.Length; i++)
+                    for (int i = 0; i < homeWorkList.Length; i++)
                     {
-                        IO.SendLine($"{i + 1}. {HomeWorkList[i]}");
+                        Io.SendLine($"{i + 1}. {homeWorkList[i]}");
                     }
 
-                    UserEnter = IO.Get("Введите номер строки для проверки, для выхода наберите -1: ");
+                    userEnter = Io.Get("Введите номер строки для проверки, для выхода наберите -1: ");
 
-                    if (int.TryParse(UserEnter, out int UserChoice))
+                    if (int.TryParse(userEnter, out int userChoice))
                     {
-                        if (UserChoice - 1 < HomeWorkList.Length && UserChoice > 0)
+                        if (userChoice - 1 < homeWorkList.Length && userChoice > 0)
                         {
-                            Launcher.HW.Run(UserChoice - 1);
+                            Launcher.Hw.Run(userChoice - 1);
                         }
                     }
                 }
-                while (UserEnter != "-1");
+                while (userEnter != "-1");
 
             }
         }

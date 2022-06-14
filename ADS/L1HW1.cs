@@ -2,7 +2,7 @@
 
 namespace ADS
 {
-    internal class L1HW1 : IHomeWork
+    internal class L1Hw1 : IHomeWork
     {
         public string Name => "Задание 1";
 
@@ -15,14 +15,14 @@ namespace ADS
             Test();
         }
 
-        private static string Prime(Int64 Number)
+        private static string Prime(Int64 number)
         {
             int d = 0;
             int i = 2;
 
-            while (i < Number)
+            while (i < number)
             {
-                if (Number % i == 0)
+                if (number % i == 0)
                 {
                     d++;
                 }
@@ -30,20 +30,20 @@ namespace ADS
             }
             if (d == 0)
             {
-                return $"{Number} простое";
+                return $"{number} простое";
             }
             else
-                return $"{Number} составное";
+                return $"{number} составное";
         }
 
         private static void Test()
         {
-            const int _prime = 9973;
-            const int _composite = 9999;
-            IO.SendLine();
-            IO.SendLine($"При вводе {_prime} ответ {Prime(_prime)}");
-            IO.SendLine($"При вводе {_composite} ответ {Prime(_composite)}");
-            IO.SendLine();
+            const int prime = 9973;
+            const int composite = 9999;
+            Io.SendLine();
+            Io.SendLine($"При вводе {prime} ответ {Prime(prime)}");
+            Io.SendLine($"При вводе {composite} ответ {Prime(composite)}");
+            Io.SendLine();
         }
     }
 }

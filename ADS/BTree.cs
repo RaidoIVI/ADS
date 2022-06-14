@@ -4,7 +4,7 @@ namespace ADS
 {
     internal class BTree
     {
-        private BTreeNode root;
+        private readonly BTreeNode root;
 
         public BTree()
         {
@@ -72,8 +72,8 @@ namespace ADS
         {
             StringBuilder tree = new StringBuilder();
             GetTree(tree, root, "", true);
-            IO.Send(tree.ToString());
-            IO.SendLine();
+            Io.Send(tree.ToString());
+            Io.SendLine();
         }
 
         private void GetTree(StringBuilder tree, BTreeNode node, string indent, bool last)
@@ -97,7 +97,7 @@ namespace ADS
             }
         }
 
-        public BTreeNode[] BFS()
+        public BTreeNode[] Bfs()
         {
             List<BTreeNode> bfs = new();
             Queue<BTreeNode> queue = new();
@@ -118,7 +118,7 @@ namespace ADS
             return bfs.ToArray();
         }
 
-        public BTreeNode[] DFS()
+        public BTreeNode[] Dfs()
         {
             List<BTreeNode> dfs = new();
             Stack<BTreeNode> stack = new();

@@ -2,7 +2,7 @@
 
 namespace ADS
 {
-    internal class L2HW1 : IHomeWork
+    internal class L2Hw1 : IHomeWork
     {
         public string Name => "Задание 1";
 
@@ -14,57 +14,57 @@ namespace ADS
         {
             NodeList testList = new();
             var rnd = new Random();
-            IO.SendLine("Сгенерированы следующие значения:");
+            Io.SendLine("Сгенерированы следующие значения:");
             for (int i = 0; i < 10; i++)
             {
                 int value = rnd.Next(10);
                 testList.AddNode(value);
-                IO.Send($"{value} ");
+                Io.Send($"{value} ");
             }
-            IO.SendLine();
-            IO.SendLine("Добавлены следующие значения:");
+            Io.SendLine();
+            Io.SendLine("Добавлены следующие значения:");
             foreach (Node node in testList)
             {
-                IO.Send($"{node.Value} ");
+                Io.Send($"{node.Value} ");
             }
-            IO.SendLine("");
-            IO.SendLine($"Всего значений: {testList.GetCount()}");
-            IO.SendLine($"Выполняю пузырьковую сортировку...");
+            Io.SendLine("");
+            Io.SendLine($"Всего значений: {testList.GetCount()}");
+            Io.SendLine($"Выполняю пузырьковую сортировку...");
             testList.SortBubble();
             foreach (Node node in testList)
             {
-                IO.Send($"{node.Value} ");
+                Io.Send($"{node.Value} ");
             }
-            IO.SendLine();
+            Io.SendLine();
             Node tmp;
             do
             {
                 var value = rnd.Next(10);
-                IO.SendLine($"Выполняю бинарный поиск значения {value}");
+                Io.SendLine($"Выполняю бинарный поиск значения {value}");
                 tmp = testList.SearchBinary(value);
             }
             while (tmp == null);
 
-            IO.SendLine("Успешно.");
+            Io.SendLine("Успешно.");
 
 
             do
             {
                 var value = rnd.Next(10);
-                IO.SendLine($"Попытка поиска и удаления элемента со значением: {value}");
+                Io.SendLine($"Попытка поиска и удаления элемента со значением: {value}");
                 testList.RemoveNode(testList.FindNode(value));
                 if (testList.GetCount() < 10)
                 {
-                    IO.SendLine($"Успешно. Новое содержимое листа:");
+                    Io.SendLine($"Успешно. Новое содержимое листа:");
                     foreach (Node node in testList)
                     {
-                        IO.Send($"{node.Value} ");
+                        Io.Send($"{node.Value} ");
                     }
-                    IO.SendLine();
+                    Io.SendLine();
                 }
                 else
                 {
-                    IO.SendLine("Значение не найдено, генерация нового значения");
+                    Io.SendLine("Значение не найдено, генерация нового значения");
                 }
             }
             while (testList.GetCount() == 10);

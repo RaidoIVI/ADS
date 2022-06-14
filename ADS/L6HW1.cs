@@ -2,7 +2,7 @@
 
 namespace ADS
 {
-    internal class L6HW1 : IHomeWork
+    internal class L6Hw1 : IHomeWork
     {
         public string Name => "Задание 1";
 
@@ -12,7 +12,7 @@ namespace ADS
 
         public void Run()
         {
-            IO.SendLine("Если вы видите эту надпись, то запуск выполнен успешно.");
+            Io.SendLine("Если вы видите эту надпись, то запуск выполнен успешно.");
         }
     }
 }

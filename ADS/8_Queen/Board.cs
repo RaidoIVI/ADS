@@ -2,31 +2,31 @@
 {
     internal class Board
     {
-        private int sizeX;
-        private int sizeY;
-        internal List<IChessman> placed;
+        private readonly int sizeX;
+        private readonly int sizeY;
+        internal List<IChessman> Placed;
         internal int LastPlacedX;
         internal int LastPlacedCode;
 
         internal Board(int x, int y)
         {
-            placed = new();
+            Placed = new();
             sizeX = x;
             sizeY = y;
         }
 
-        public Board Clone() => new Board(sizeX, sizeY, placed);
+        public Board Clone() => new Board(sizeX, sizeY, Placed);
 
         private Board(int sizeX, int sizeY, List<IChessman> placed)
         {
             this.sizeX = sizeX;
             this.sizeY = sizeY;
-            this.placed = new(placed);
+            this.Placed = new(placed);
         }
 
         internal bool TryAdd(IChessman chessman)
         {
-            foreach (IChessman item in placed)
+            foreach (IChessman item in Placed)
             {
                 if (item.Beats(chessman.X, chessman.Y) || chessman.Beats(item.X, item.Y)) return false;
             }
@@ -35,7 +35,7 @@
 
         internal bool Add(IChessman chessman)
         {
-            placed.Add(chessman);   // раньше тут ставился клон
+            Placed.Add(chessman);   // раньше тут ставился клон
             LastPlacedX = chessman.X;
             LastPlacedCode = chessman.Code;
             return true;
@@ -43,28 +43,28 @@
 
         internal void Draw()
         {
-            foreach (IChessman item in placed)
+            foreach (IChessman item in Placed)
             {
-                IO.Send($"{item.Name} X: {item.X} Y: {item.Y}");
-                IO.SendLine();
+                Io.Send($"{item.Name} X: {item.X} Y: {item.Y}");
+                Io.SendLine();
             }
             for (int i = 0; i < sizeX; i++)
             {
                 for (int j = 0; j < sizeY; j++)
                 {
-                    var tmp = placed.Find(item => item.X == i && item.Y == j);
+                    var tmp = Placed.Find(item => item.X == i && item.Y == j);
                     if (tmp != null)
                     {
-                        IO.Send(tmp.Code.ToString());
+                        Io.Send(tmp.Code.ToString());
                     }
                     else
                     {
-                        IO.Send("0");
+                        Io.Send("0");
                     }
                 }
-                IO.SendLine();
+                Io.SendLine();
             }
-            IO.SendLine();
+            Io.SendLine();
         }
     }
 }

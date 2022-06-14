@@ -1,12 +1,12 @@
 ﻿namespace ADS
 {
-    internal class L5HW1 : HomeWork
+    internal class L5Hw1 : HomeWork
     {
-        private new const string _lession = "Урок 5";
-        private new const string _name = "Задание 1";
-        private new const string _description = "Реализация обхода в ширину и в глубину";
+        private new const string Lession = "Урок 5";
+        private new const string Name = "Задание 1";
+        private new const string Description = "Реализация обхода в ширину и в глубину";
 
-        public L5HW1() : base(_lession, _name, _description) { }
+        public L5Hw1() : base(Lession, Name, Description) { }
 
         public override void Run()
         {
@@ -17,23 +17,23 @@
                 tree.Add(rnd.Next(10).ToString());
             }
 
-            IO.SendLine("Сгенерировано следующее дерево");
+            Io.SendLine("Сгенерировано следующее дерево");
 
             tree.Draw();
 
-            IO.SendLine("Вывод значений при обходе в ширину");
-            foreach (var item in tree.BFS())
+            Io.SendLine("Вывод значений при обходе в ширину");
+            foreach (var item in tree.Bfs())
             {
                 item.Draw();
             }
-            IO.SendLine();
+            Io.SendLine();
 
-            IO.SendLine("Вывод значений при обходе в глубину");
-            foreach (var item in tree.DFS())
+            Io.SendLine("Вывод значений при обходе в глубину");
+            foreach (var item in tree.Dfs())
             {
                 item.Draw();
             }
-            IO.SendLine();
+            Io.SendLine();
         }
     }
 }

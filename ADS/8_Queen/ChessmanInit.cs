@@ -16,7 +16,7 @@ namespace ADS
                     var tmpOject = Activator.CreateInstance(tmp[i]);
                     if (((IChessman)tmpOject).Code != 0)
                     {
-                        var userEnter = IO.Get($"Фигура {((IChessman)tmpOject).Name} Введите количество для помещения на доску: ");
+                        var userEnter = Io.Get($"Фигура {((IChessman)tmpOject).Name} Введите количество для помещения на доску: ");
                         if (int.TryParse(userEnter, out int userChoice))
                         {
                             for (int j = 0; j < userChoice; j++)
@@ -28,22 +28,22 @@ namespace ADS
                 }
             }
 
-            IO.SendLine();
-            int x = int.Parse(IO.Get("Введите размер по X: "));
-            int y = int.Parse(IO.Get("Введите размер по Y: "));
-            IO.SendLine();
+            Io.SendLine();
+            int x = int.Parse(Io.Get("Введите размер по X: "));
+            int y = int.Parse(Io.Get("Введите размер по Y: "));
+            Io.SendLine();
 
             ChessEnum.Init(x, y);
             ChessEnum.Start(chessman);
 
-            IO.SendLine();
-            IO.SendLine($"Всего найдено {ChessEnum.Result.Count} вариантов");
-            if ("y" != IO.Get("Для отображения вариантов нажмите y").ToLower()) return;
+            Io.SendLine();
+            Io.SendLine($"Всего найдено {ChessEnum.Result.Count} вариантов");
+            if ("y" != Io.Get("Для отображения вариантов нажмите y").ToLower()) return;
             foreach (Board board in ChessEnum.Result)
             {
                 board.Draw();
             }
-            IO.SendLine();
+            Io.SendLine();
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace ADS
 {
-    internal class L3HW1 : IHomeWork
+    internal class L3Hw1 : IHomeWork
     {
         public string Name => "Задание 1";
 
@@ -20,15 +20,15 @@ namespace ADS
         private void Test(int value)
         {
             Range range = new(value);
-            IO.SendLine($"Инициализация {value}");
+            Io.SendLine($"Инициализация {value}");
             range.DraftResult();
-            range.TestWOSqrt();
-            IO.SendLine("Вычисление расстояния без корня квадратного (примерное)");
+            range.TestWoSqrt();
+            Io.SendLine("Вычисление расстояния без корня квадратного (примерное)");
             range.DraftResult();
             range.Test();
-            IO.SendLine("Вычисление расстояния с корнем квадратным (точное)");
+            Io.SendLine("Вычисление расстояния с корнем квадратным (точное)");
             range.DraftResult();
-            IO.SendLine("---------------------------------------------------------------------------------");
+            Io.SendLine("---------------------------------------------------------------------------------");
         }
     }
 }

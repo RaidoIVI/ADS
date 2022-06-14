@@ -2,9 +2,9 @@
 
 namespace Launcher
 {
-    public class HW
+    public class Hw
     {
-        private static List<IHomeWork?> homeWorks = new();
+        private static readonly List<IHomeWork?> HomeWorks = new();
 
         public static String[] GetList()
         {
@@ -14,15 +14,15 @@ namespace Launcher
             List<string> tmp = new();
             for (int i = 0; i < homeWorkList.Count; i++)
             {
-                homeWorks.Add((IHomeWork)Activator.CreateInstance(homeWorkList[i])!);
-                tmp.Add($" {homeWorks[i]?.Lession} {homeWorks[i]?.Name} {homeWorks[i]?.Description}");
+                HomeWorks.Add((IHomeWork)Activator.CreateInstance(homeWorkList[i])!);
+                tmp.Add($" {HomeWorks[i]?.Lession} {HomeWorks[i]?.Name} {HomeWorks[i]?.Description}");
             }
             return tmp.ToArray();
         }
 
         public static void Run(int value)
         {
-            homeWorks[value]?.Run();
+            HomeWorks[value]?.Run();
         }
     }
 }

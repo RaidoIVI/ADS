@@ -2,13 +2,13 @@
 {
     internal class Rook : IChessman
     {
-        private readonly static int code;
+        private static readonly int сode;
         private int x;
         private int y;
 
         static Rook()
         {
-            code = IChessman.ID;
+            сode = IChessman.Id;
         }
 
         public Rook()
@@ -23,7 +23,7 @@
 
         public char Sign => 'R';
 
-        public int Code => code;
+        public int Code => сode;
 
         public int X => x;
 

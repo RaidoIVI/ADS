@@ -4,7 +4,7 @@
     {
         public bool Beats(int x, int y);              // Бьет ли фигура из текущего положения клетку с координатами (X,Y)
         public void SetCoodinats(int x, int y);       // Перемещает фигуру в новую позицию по координатам (X,Y)
-        private static int code;
+        private static int _code;
         public string Name { get; }
         public int Code { get; }
         public char Sign { get; }
@@ -13,15 +13,15 @@
 
         static IChessman()
         {
-            code = 0;
+            _code = 0;
         }
 
-        internal static int ID
+        internal static int Id
         {
             get
             {
-                code++;
-                return code;
+                _code++;
+                return _code;
             }
         }
     }

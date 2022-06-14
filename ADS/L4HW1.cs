@@ -3,7 +3,7 @@
 namespace ADS
 {
 
-    internal class L4HW1 : IHomeWork
+    internal class L4Hw1 : IHomeWork
     {
         public string Name => "Задание 1";
 

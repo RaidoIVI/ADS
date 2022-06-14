@@ -2,30 +2,30 @@
 {
     abstract class HomeWork
     {
-        protected readonly string _lession;
-        protected readonly string _name;
-        protected readonly string _description;
+        protected readonly string Lession;
+        protected readonly string Name;
+        protected readonly string Description;
 
         public HomeWork(string lession, string name, string description)
         {
-            _lession = lession;
-            _name = name;
-            _description = description;
+            Lession = lession;
+            Name = name;
+            Description = description;
         }
 
         public virtual string GetLession()
         {
-            return _lession;
+            return Lession;
         }
 
         public virtual string GetName()
         {
-            return _name;
+            return Name;
         }
 
         public virtual string GetDescription()
         {
-            return _description;
+            return Description;
         }
 
         public abstract void Run();

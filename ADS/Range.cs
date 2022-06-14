@@ -9,7 +9,7 @@ namespace ADS
         private readonly Stopwatch stopwatch;
         private TimeSpan classTime;
         private TimeSpan structTime;
-        private int quantity;
+        private readonly int quantity;
 
         internal Range(int quantity)
         {
@@ -36,8 +36,8 @@ namespace ADS
 
         internal void DraftResult()
         {
-            IO.SendLine($"Число элементов | Время структуры | Время класса    | Класс/Структура");
-            IO.SendLine($"{quantity,15} | {structTime.TotalSeconds,15} | {classTime.TotalSeconds,15} | {classTime.TotalSeconds / structTime.TotalSeconds,15}");
+            Io.SendLine($"Число элементов | Время структуры | Время класса    | Класс/Структура");
+            Io.SendLine($"{quantity,15} | {structTime.TotalSeconds,15} | {classTime.TotalSeconds,15} | {classTime.TotalSeconds / structTime.TotalSeconds,15}");
         }
 
         #region Init
@@ -75,15 +75,15 @@ namespace ADS
             classTime = stopwatch.Elapsed;
         }
 
-        internal void TestWOSqrt()
+        internal void TestWoSqrt()
         {
             TimeReset();
             stopwatch.Restart();
-            LenghtStructWOSqrt();
+            LenghtStructWoSqrt();
             stopwatch.Stop();
             structTime = stopwatch.Elapsed;
             stopwatch.Restart();
-            LenghtClassWOSqrt();
+            LenghtClassWoSqrt();
             stopwatch.Stop();
             classTime = stopwatch.Elapsed;
         }
@@ -101,7 +101,7 @@ namespace ADS
             }
         }
 
-        private void LenghtClassWOSqrt()
+        private void LenghtClassWoSqrt()
         {
             for (int i = 0; i < quantity; i++)
             {
@@ -127,7 +127,7 @@ namespace ADS
             }
         }
 
-        private void LenghtStructWOSqrt()
+        private void LenghtStructWoSqrt()
         {
             for (int i = 0; i < quantity; i++)
             {

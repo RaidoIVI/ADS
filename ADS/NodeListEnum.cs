@@ -4,8 +4,8 @@ namespace ADS
 {
     internal class NodeListEnum : IEnumerator
     {
-        private Node firstNode;
-        private Node lastNode;
+        private readonly Node firstNode;
+        private readonly Node lastNode;
         private Node currentNode;
 
         public NodeListEnum(Node firstNode, Node lastNode)

@@ -172,7 +172,7 @@
 
         internal void Draw()
         {
-            IO.Send(value);
+            Io.Send(value);
         }
     }
 }
