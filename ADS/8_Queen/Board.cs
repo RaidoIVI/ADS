@@ -16,8 +16,10 @@
 
         public object Clone() => new Board(sizeX, sizeY, placed);
 
-        private Board(int sizeX, int sizeY, List<IChessman> placed) : this(sizeX, sizeY)
+        private Board(int sizeX, int sizeY, List<IChessman> placed)
         {
+            this.sizeX = sizeX;
+            this.sizeY = sizeY;
             this.placed = new(placed);
         }
 
