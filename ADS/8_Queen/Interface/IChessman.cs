@@ -8,6 +8,7 @@
         public string Name { get; }
         public int Code { get; }
         public char Sign { get; }
+        public string Description { get; }
         public int X { get; }
         public int Y { get; }
 

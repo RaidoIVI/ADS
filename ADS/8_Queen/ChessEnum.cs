@@ -46,22 +46,42 @@ namespace ADS
         private static void StepNext(Board board, IChessman chessman)
         {
             int minX = 0;
+            int minY = 0;
             if (board.LastPlaced != null && board.LastPlaced.Code == chessman.Code)
             {
                 minX = board.LastPlaced.X;
+                minY = board.LastPlaced.Y;
             }
             for (int i = minX; i < sizeX; i++)
             {
-                for (int j = 0; j < sizeY; j++)
+                if (i == minX)
                 {
-                    chessman.SetCoodinats(i, j);
-                    if (board.TryAdd(chessman))
+                    for (int j = minY; j < sizeY; j++)
                     {
-                        Board tmpBoard = (Board)board.Clone();
-                        IChessman tmpToPlace = (IChessman)chessman.Clone();
-                        tmpBoard.Add(tmpToPlace);
-                        newPlased.Enqueue(tmpBoard);
+                        chessman.SetCoodinats(i, j);
+                        if (board.TryAdd(chessman))
+                        {
+                            Board tmpBoard = (Board)board.Clone();
+                            IChessman tmpToPlace = (IChessman)chessman.Clone();
+                            tmpBoard.Add(tmpToPlace);
+                            newPlased.Enqueue(tmpBoard);
 
+                        }
+                    }
+                }
+                else
+                {
+                    for (int j = 0; j < sizeY; j++)
+                    {
+                        chessman.SetCoodinats(i, j);
+                        if (board.TryAdd(chessman))
+                        {
+                            Board tmpBoard = (Board)board.Clone();
+                            IChessman tmpToPlace = (IChessman)chessman.Clone();
+                            tmpBoard.Add(tmpToPlace);
+                            newPlased.Enqueue(tmpBoard);
+
+                        }
                     }
                 }
             }
