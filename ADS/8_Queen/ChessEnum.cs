@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace ADS
+﻿namespace ADS
 {
     internal static class ChessEnum
     {
@@ -16,15 +14,15 @@ namespace ADS
 
         internal static void Init(int x, int y)
         {
-            _boards = new(10_000_000);
-            _newPlased = new(10_000_000);
-            _sizeX = x;
-            _sizeY = y;
-            _boards.Enqueue(new Board(x, y));
+            boards = new(10_000_000);
+            sizeX = x;
+            sizeY = y;
+            boards.Enqueue(new Board(x, y));
         }
 
         internal static void Start(Queue<IChessman> chessmen)
         {
+
             Stopwatch timer = new();
             timer.Start();
             var counter = 1;
@@ -44,22 +42,27 @@ namespace ADS
 
         private static void StepNext(Board board, IChessman chessman)
         {
-            int minX = 0;
-            if (board.LastPlacedCode == chessman.Code)
+            using Board tmpBoard = board;
             {
-                minX = board.LastPlacedX;
-            }
-            for (int i = minX; i < _sizeX; i++)
-            {
-                for (int j = 0; j < _sizeY; j++)
+                using IChessman tmpChessman = chessman;
                 {
-                    chessman.SetCoodinats(i, j);
-                    if (board.TryAdd(chessman))
+                    int minX = 0;
+                    if (tmpBoard.LastPlacedCode == chessman.Code)
                     {
-                        Board tmpBoard = board.Clone();
-                        IChessman tmpToPlace = (IChessman)chessman.Clone();
-                        tmpBoard.Add(tmpToPlace);
-                        _newPlased.Enqueue(tmpBoard);
+                        minX = tmpBoard.LastPlacedX;
+                    }
+                    for (int i = minX; i < sizeX; i++)
+                    {
+                        for (int j = 0; j < sizeY; j++)
+                        {
+                            chessman.SetCoodinats(i, j);
+                            if (board.TryAdd(chessman))
+                            {
+                                var q = tmpBoard.Clone();
+                                q.Add((IChessman)chessman.Clone());
+                                newPlased.Enqueue(q);
+                            }
+                        }
                     }
                 }
             }

@@ -39,6 +39,9 @@
 
         public object Clone() => new Queen(x, y);
 
+        public void Dispose()
+        { }
+
         public void SetCoodinats(int x, int y)
         {
             this.x = x;

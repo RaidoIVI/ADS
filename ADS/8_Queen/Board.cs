@@ -1,6 +1,6 @@
 ﻿namespace ADS
 {
-    internal class Board
+    internal class Board : IDisposable
     {
         private readonly int sizeX;
         private readonly int sizeY;
@@ -33,12 +33,11 @@
             return true;
         }
 
-        internal bool Add(IChessman chessman)
+        internal void Add(IChessman chessman)
         {
             Placed.Add(chessman);   // раньше тут ставился клон
             LastPlacedX = chessman.X;
             LastPlacedCode = chessman.Code;
-            return true;
         }
 
         internal void Draw()
@@ -65,6 +64,11 @@
                 Io.SendLine();
             }
             Io.SendLine();
+        }
+
+        public void Dispose()
+        {
+
         }
     }
 }
