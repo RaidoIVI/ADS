@@ -1,6 +1,6 @@
 ﻿namespace ADS
 {
-    public interface IChessman : ICloneable
+    public interface IChessman : ICloneable, IDisposable
     {
         public bool Beats(int x, int y);              // Бьет ли фигура из текущего положения клетку с координатами (X,Y)
         public void SetCoodinats(int x, int y);       // Перемещает фигуру в новую позицию по координатам (X,Y)

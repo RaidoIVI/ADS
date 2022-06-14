@@ -33,6 +33,9 @@
 
         public object Clone() => MemberwiseClone();
 
+        public void Dispose()
+        { }
+
         public void SetCoodinats(int x, int y)
         {
             this.x = x;

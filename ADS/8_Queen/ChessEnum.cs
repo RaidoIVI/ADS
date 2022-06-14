@@ -17,7 +17,6 @@ namespace ADS
         internal static void Init(int x, int y)
         {
             boards = new(10_000_000);
-            newPlased = new(10_000_000);
             sizeX = x;
             sizeY = y;
             boards.Enqueue(new Board(x, y));
@@ -25,6 +24,7 @@ namespace ADS
 
         internal static void Start(Queue<IChessman> chessmen)
         {
+
             Stopwatch timer = new();
             timer.Start();
             var counter = 1;
@@ -44,22 +44,27 @@ namespace ADS
 
         private static void StepNext(Board board, IChessman chessman)
         {
-            int minX = 0;
-            if (board.LastPlacedCode == chessman.Code)
+            using Board tmpBoard = board;
             {
-                minX = board.LastPlacedX;
-            }
-            for (int i = minX; i < sizeX; i++)
-            {
-                for (int j = 0; j < sizeY; j++)
+                using IChessman tmpChessman = chessman;
                 {
-                    chessman.SetCoodinats(i, j);
-                    if (board.TryAdd(chessman))
+                    int minX = 0;
+                    if (tmpBoard.LastPlacedCode == chessman.Code)
                     {
-                        Board tmpBoard = board.Clone();
-                        IChessman tmpToPlace = (IChessman)chessman.Clone();
-                        tmpBoard.Add(tmpToPlace);
-                        newPlased.Enqueue(tmpBoard);
+                        minX = tmpBoard.LastPlacedX;
+                    }
+                    for (int i = minX; i < sizeX; i++)
+                    {
+                        for (int j = 0; j < sizeY; j++)
+                        {
+                            chessman.SetCoodinats(i, j);
+                            if (board.TryAdd(chessman))
+                            {
+                                var q = tmpBoard.Clone();
+                                q.Add((IChessman)chessman.Clone());
+                                newPlased.Enqueue(q);
+                            }
+                        }
                     }
                 }
             }
