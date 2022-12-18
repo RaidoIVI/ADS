@@ -9,8 +9,8 @@ namespace Launcher
         public static String[] GetList()
         {
             List<Type> HomeWorkList = new();
-            HomeWorkList.AddRange((Assembly.GetCallingAssembly().GetTypes().Where(t => t.GetInterfaces()
-            .Where(i => i == typeof(IHomeWork)).ToList().Count > 0)));
+            HomeWorkList.AddRange((Assembly.GetCallingAssembly().GetTypes().
+                Where(t => t.GetInterfaces().Any(i => i == typeof(IHomeWork)))));
             List<string> tmp = new();
             for (int i = 0; i < HomeWorkList.Count; i++)
             {

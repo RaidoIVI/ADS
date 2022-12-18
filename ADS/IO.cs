@@ -6,8 +6,7 @@
         {
             Console.Write($"{Description} ");
             var tmp = Console.ReadLine();
-            if (tmp == null) tmp = String.Empty;
-            return tmp;
+            return tmp ?? string.Empty;
         }
 
         internal static void Send(string value = "")

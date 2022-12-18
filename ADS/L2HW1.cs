@@ -47,7 +47,6 @@ namespace ADS
 
             IO.SendLine("Успешно.");
 
-
             do
             {
                 var value = rnd.Next(10);
